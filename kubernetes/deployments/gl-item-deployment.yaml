@@ -1,56 +1,57 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: gl-item-deployment
   labels:
     app: gl-item
+  name: gl-item-deployment
+  namespace: default
 spec:
   replicas: 2
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 1
-      maxSurge: 1
   selector:
     matchLabels:
       app: gl-item
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
   template:
     metadata:
       labels:
         app: gl-item
     spec:
       containers:
-      - name: gl-item
-        image: gcr.io/oceanic-isotope-199421/github-zmad5306-gl-item:ce041e301619f6796b1be7c005c44c8a45fe602a
+      - env:
+        - name: mongo-db-uri
+          valueFrom:
+            configMapKeyRef:
+              key: item-mongouri
+              name: gl-config
+        image: gcr.io/oceanic-isotope-199421/gl-item:864001dc2f8f0ba5b5f8c36c959ed0712f3bc185
         imagePullPolicy: Always
-        env:
-          - name: mongo-db-uri
-            valueFrom:
-                configMapKeyRef:
-                  name: gl-config
-                  key: item-mongouri
+        livenessProbe:
+          failureThreshold: 5
+          httpGet:
+            path: /item/actuator/health
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 30
+        name: gl-item
         ports:
         - containerPort: 8080
-        livenessProbe:
-          httpGet:
-            path: /item/actuator/health
-            port: 8080
-          initialDelaySeconds: 30
-          periodSeconds: 30
-          timeoutSeconds: 30
-          successThreshold: 1
-          failureThreshold: 5
         readinessProbe:
+          failureThreshold: 5
           httpGet:
             path: /item/actuator/health
             port: 8080
           initialDelaySeconds: 30
           periodSeconds: 30
-          timeoutSeconds: 30
           successThreshold: 1
-          failureThreshold: 5
+          timeoutSeconds: 30
         resources:
-          requests:
-            memory: 128Mi
           limits:
             memory: 256Mi
+          requests:
+            memory: 128Mi
