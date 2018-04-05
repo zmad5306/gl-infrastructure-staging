@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: gl-item
-        image: gcr.io/oceanic-isotope-199421/github-zmad5306-gl-item:latest
+        image: gcr.io/oceanic-isotope-199421/github-zmad5306-gl-item:ce041e301619f6796b1be7c005c44c8a45fe602a
         imagePullPolicy: Always
         env:
           - name: mongo-db-uri
