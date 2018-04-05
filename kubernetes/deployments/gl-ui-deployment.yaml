@@ -1,32 +1,33 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: gl-ui-deployment
   labels:
     app: gl-ui
+  name: gl-ui-deployment
+  namespace: default
 spec:
-  replicas: 2
   minReadySeconds: 5
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 1
-      maxSurge: 1
+  replicas: 2
   selector:
     matchLabels:
       app: gl-ui
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
   template:
     metadata:
       labels:
         app: gl-ui
     spec:
       containers:
-      - name: gl-ui
-        image: gcr.io/oceanic-isotope-199421/github-zmad5306-gl-ui:c491d723f03fdb18cf8f490b880fa6b1fc708f77
+      - image: gcr.io/oceanic-isotope-199421/gl-ui:9b043b5abd0c372ff1f3ae87a9e9c65fb90c6f30
+        name: gl-ui
         ports:
         - containerPort: 80
         resources:
-          requests:
-            memory: 128Mi
           limits:
             memory: 256Mi
+          requests:
+            memory: 128Mi
