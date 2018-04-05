@@ -8,14 +8,16 @@ metadata:
     kubernetes.io/ingress.allow-http: "false"
     ingress.gcp.kubernetes.io/pre-shared-cert: "gl-staging-cert"
 spec:
-  backend:
-    serviceName: gl-ui-service
-    servicePort: 80
   rules:
-  - http:
-      paths:
-      - path: /api/*
-        backend:
-          serviceName: gl-api-service
-          servicePort: 8080
+    - host: glstaging.zacharymaddox.us
+      http:
+        paths:
+        - path: /*
+          backend:
+            serviceName: gl-ui-service
+            servicePort: 80
+        - path: /api/*
+          backend:
+            serviceName: gl-api-service
+            servicePort: 8080
       
