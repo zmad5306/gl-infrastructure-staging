@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"labels":{"app":"gl-item"},"name":"gl-item-service","namespace":"default"},"spec":{"ports":[{"port":8080,"protocol":"TCP"}],"selector":{"app":"gl-item"},"type":"ClusterIP"}}
+  creationTimestamp: 2018-04-05T11:41:50Z
+  labels:
+    app: gl-item
+  name: gl-item-service
+  namespace: default
+  resourceVersion: "2051"
+  selfLink: /api/v1/namespaces/default/services/gl-item-service
+  uid: 54a5fcae-38c6-11e8-a3df-42010a8001e4
+spec:
+  clusterIP: 10.59.241.44
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: gl-item
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

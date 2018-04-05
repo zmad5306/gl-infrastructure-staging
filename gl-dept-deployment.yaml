@@ -1,0 +1,98 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "2"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"labels":{"app":"gl-dept"},"name":"gl-dept-deployment","namespace":"default"},"spec":{"replicas":2,"selector":{"matchLabels":{"app":"gl-dept"}},"strategy":{"rollingUpdate":{"maxSurge":1,"maxUnavailable":1},"type":"RollingUpdate"},"template":{"metadata":{"labels":{"app":"gl-dept"}},"spec":{"containers":[{"env":[{"name":"mongo-db-uri","valueFrom":{"configMapKeyRef":{"key":"dept-mongouri","name":"gl-config"}}}],"image":"gcr.io/oceanic-isotope-199421/github-zmad5306-gl-dept:latest","imagePullPolicy":"Always","livenessProbe":{"failureThreshold":5,"httpGet":{"path":"/dept/actuator/health","port":8080},"initialDelaySeconds":30,"periodSeconds":30,"successThreshold":1,"timeoutSeconds":30},"name":"gl-dept","ports":[{"containerPort":8080}],"readinessProbe":{"failureThreshold":5,"httpGet":{"path":"/dept/actuator/health","port":8080},"initialDelaySeconds":30,"periodSeconds":30,"successThreshold":1,"timeoutSeconds":30},"resources":{"limits":{"memory":"256Mi"},"requests":{"memory":"128Mi"}}}]}}}}
+  creationTimestamp: 2018-04-05T11:41:42Z
+  generation: 2
+  labels:
+    app: gl-dept
+  name: gl-dept-deployment
+  namespace: default
+  resourceVersion: "3160"
+  selfLink: /apis/extensions/v1beta1/namespaces/default/deployments/gl-dept-deployment
+  uid: 4f746786-38c6-11e8-a3df-42010a8001e4
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 2
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: gl-dept
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: gl-dept
+    spec:
+      containers:
+      - env:
+        - name: mongo-db-uri
+          valueFrom:
+            configMapKeyRef:
+              key: dept-mongouri
+              name: gl-config
+        image: gcr.io/oceanic-isotope-199421/github-zmad5306-gl-dept:a5f5809bd7090042402a91dad1ac02c2e19f5b66
+        imagePullPolicy: Always
+        livenessProbe:
+          failureThreshold: 5
+          httpGet:
+            path: /dept/actuator/health
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 30
+        name: gl-dept
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 5
+          httpGet:
+            path: /dept/actuator/health
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 30
+        resources:
+          limits:
+            memory: 256Mi
+          requests:
+            memory: 128Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 2
+  conditions:
+  - lastTransitionTime: 2018-04-05T11:43:36Z
+    lastUpdateTime: 2018-04-05T11:43:36Z
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: "True"
+    type: Available
+  - lastTransitionTime: 2018-04-05T11:41:42Z
+    lastUpdateTime: 2018-04-05T11:56:37Z
+    message: ReplicaSet "gl-dept-deployment-bb4b947fd" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  observedGeneration: 2
+  readyReplicas: 2
+  replicas: 2
+  updatedReplicas: 2
