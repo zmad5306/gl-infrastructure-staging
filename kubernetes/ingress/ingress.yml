@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: gl-ingress
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+    kubernetes.io/ingress.global-static-ip-name: "gl-static-ip"
+    kubernetes.io/ingress.allow-http: "false"
+    ingress.gcp.kubernetes.io/pre-shared-cert: "lets-encrypt-cert-gl-zacharymaddox-us"
+spec:
+  backend:
+    serviceName: gl-ui-service
+    servicePort: 80
+  rules:
+  - http:
+      paths:
+      - path: /api/*
+        backend:
+          serviceName: gl-api-service
+          servicePort: 8080
+      

@@ -1,15 +1,7 @@
-apiVersion: storage.k8s.io/v1
 kind: StorageClass
+apiVersion: storage.k8s.io/v1beta1
 metadata:
-  annotations:
-    kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"storage.k8s.io/v1beta1","kind":"StorageClass","metadata":{"annotations":{},"name":"fast","namespace":""},"parameters":{"type":"pd-ssd"},"provisioner":"kubernetes.io/gce-pd"}
-  creationTimestamp: 2018-04-05T11:41:40Z
   name: fast
-  resourceVersion: "2001"
-  selfLink: /apis/storage.k8s.io/v1/storageclasses/fast
-  uid: 4e380b53-38c6-11e8-a3df-42010a8001e4
+provisioner: kubernetes.io/gce-pd
 parameters:
   type: pd-ssd
-provisioner: kubernetes.io/gce-pd
-reclaimPolicy: Delete

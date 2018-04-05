@@ -1,19 +1,12 @@
-apiVersion: rbac.authorization.k8s.io/v1
+apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
-  annotations:
-    kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"rbac.authorization.k8s.io/v1beta1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"name":"default-view","namespace":""},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"view"},"subjects":[{"kind":"ServiceAccount","name":"default","namespace":"default"}]}
-  creationTimestamp: 2018-04-05T11:41:34Z
   name: default-view
-  resourceVersion: "1983"
-  selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/default-view
-  uid: 4a89a4f8-38c6-11e8-a3df-42010a8001e4
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
   name: view
 subjects:
-- kind: ServiceAccount
-  name: default
-  namespace: default
+  - kind: ServiceAccount
+    name: default
+    namespace: default
