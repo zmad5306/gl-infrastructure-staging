@@ -22,7 +22,7 @@ spec:
         app: gl-ui
     spec:
       containers:
-      - image: gcr.io/oceanic-isotope-199421/github-zmad5306-gl-ui:2bdac8f603f84e744489ad85aaaccb4d85a59986
+      - image: gcr.io/oceanic-isotope-199421/github-zmad5306-gl-ui:c8bfb957b915cff0d9138904d3af05aebc5ecc2b
         name: gl-ui
         ports:
         - containerPort: 80
