@@ -27,7 +27,7 @@ spec:
             configMapKeyRef:
               key: api-mongouri
               name: gl-config
-        image: gcr.io/oceanic-isotope-199421/github-zmad5306-gl-api:50c151ff3f501c24b5e4b1d7a05953f9ef2f8e8b
+        image: gcr.io/oceanic-isotope-199421/github-zmad5306-gl-api:024ffbd246e2a478b599b534bb7246926d2d2dcc
         imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 5
