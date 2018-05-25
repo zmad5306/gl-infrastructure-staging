@@ -27,7 +27,7 @@ spec:
             configMapKeyRef:
               key: list-mongouri
               name: gl-config
-        image: gcr.io/grocery-list-205220/github-zmad5306-gl-list:2a3c5f1716f899f8705d57ca456632720377dd5f
+        image: gcr.io/grocery-list-205220/github-zmad5306-gl-list:c726cc0c107e2f4d0f9f39d106c2508a5f499a54
         imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 5
