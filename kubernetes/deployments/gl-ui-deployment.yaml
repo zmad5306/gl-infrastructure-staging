@@ -22,7 +22,7 @@ spec:
         app: gl-ui
     spec:
       containers:
-      - image: gcr.io/grocery-list-205220/github-zmad5306-gl-ui:d91555ab197c35217dbfd5ba454695f022f63054
+      - image: gcr.io/grocery-list-205220/github-zmad5306-gl-ui:8aa8db2f046843984954bee44f971dee43538497
         name: gl-ui
         ports:
         - containerPort: 80
