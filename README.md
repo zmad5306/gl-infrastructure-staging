@@ -21,7 +21,7 @@ k8s manifests for staging env
 
 **Build configration:** cloudbuild.yaml
 
-**cloudbuild.yaml location:** /staging/cloudbuild.yaml
+**cloudbuild.yaml location:** /cloudbuild.yaml
 
 #### Staging Substitution variables
 
