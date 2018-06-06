@@ -5,7 +5,7 @@ k8s manifests for staging env
 
 `gcloud config set compute/zone us-central1-f`
 
-`gcloud container clusters create staging --cluster-version=1.9.6-gke.1-node-version=1.9.6-gke.1 --num-nodes=4`
+`gcloud container clusters create staging --cluster-version=1.9.6-gke.1 --node-version=1.9.6-gke.1 --num-nodes=4`
 
 ## Create Static IP
 
